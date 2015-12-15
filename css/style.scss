@@ -1,5 +1,47 @@
 @import "_variables.scss";
+@import "_mixins.scss";
 
-body {
-  background: $color;
+*, *:after, *:before {
+  margin: 0;
+  padding: 0;
+  @include border-box;
+}
+img {
+  width: auto;
+  max-width: 100%;
+  height: auto !important;
+}
+.wrapper,
+.row {
+  @extend %clearfix;
+}
+.wrapper {
+  width: 100%;
+  margin: 0 auto;
+}
+span {
+  display: block;
+  padding: 1em 0;
+  text-align: center;
+}
+[class*='column-'] {
+  float: left;
+  padding: .5em;
+  width: 100%;
+  min-height: 1px;
+}
+
+/* Media Queries
+======================= */
+
+@media #{$breakpoint-medium} {
+  .wrapper {
+    width: 95%;
+    max-width: $grid-max-width;
+  }
+  @for $i from 1 through 12 {
+    .column-#{$i} {
+      width: 100% / 12 * $i;
+    }
+  }
 }
